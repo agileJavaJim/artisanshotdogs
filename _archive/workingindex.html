@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Hot Dogs | Gourmet Street Food</title>
+    
+    <!-- Link to your shared premium external stylesheet -->
+   <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <style>
+        /* --- CORE RESET & SMOOTH SCROLL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            background-color: #1a1a1a; 
+            padding: 40px 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+
+        /* --- HERO SPLASH CARD (TOP OF THE PAGE) --- */
+        .splash-card { 
+            position: relative; 
+            width: 90%; 
+            max-width: 1200px; 
+            height: 85vh; 
+            background-color: #4A1521; /* Rich Burgundy */
+            border-radius: 25px; 
+            overflow: hidden; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7); 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 60px; 
+            border: 3px solid #D4AF37; /* Gold Frame Trim */
+        }
+
+        /* --- HEADER AREA: BRAND & INTERACTIVE DROPDOWN --- */
+        .header-nav { 
+            position: absolute; 
+            top: 15px; 
+            left: 0; 
+            width: 100%; 
+            padding: 0 40px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 10; 
+        }
+        
+        .main-brand { 
+            font-family: 'Georgia', 'Times New Roman', serif; 
+            font-size: 4.5rem; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            color: #F5E6CA; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6); 
+            text-align: center; 
+        }
+        
+        /* Interactive Hamburger Menu Controls */
+        .menu-wrap { position: absolute; right: 40px; }
+        .menu-wrap .toggler { position: absolute; z-index: 12; width: 50px; height: 50px; opacity: 0; cursor: pointer; }
+        .menu-wrap .hamburger { width: 50px; height: 50px; background: rgba(20, 20, 20, 0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212, 175, 55, 0.5); z-index: 11; }
+        .menu-wrap .hamburger > div { width: 22px; height: 3px; background: #F5E6CA; position: relative; transition: all 0.4s; }
+        .menu-wrap .hamburger > div::before, .menu-wrap .hamburger > div::after { content: ''; position: absolute; top: -7px; width: 100%; height: 3px; background: inherit; }
+        .menu-wrap .hamburger > div::after { top: 7px; }
+        
+        /* Hamburger Animations */
+        .menu-wrap .toggler:checked + .hamburger > div { transform: rotate(135deg); }
+        .menu-wrap .toggler:checked + .hamburger > div::before, .menu-wrap .toggler:checked + .hamburger > div::after { top: 0; transform: rotate(90deg); }
+        
+        /* Dropdown Navigation Links Overlay */
+        .menu-dropdown { 
+            position: absolute; 
+            top: 60px; 
+            right: 0; 
+            background: #141414; 
+            border: 1px solid #D4AF37; 
+            border-radius: 15px; 
+            width: 200px; 
+            padding: 15px 0; 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: all 0.3s; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        
+        .menu-dropdown a { 
+            display: block; 
+            padding: 12px 25px; 
+            color: #F5E6CA; 
+            text-decoration: none; 
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif; 
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        .menu-dropdown a:hover {
+            color: #4A1521;
+            background-color: #F5E6CA;
+        }
+        
+        .menu-wrap .toggler:checked ~ .menu-dropdown { opacity: 1; visibility: visible; }
+
+        /* --- HERO TEXT CONTENT PANELS --- */
+        .content { 
+            width: 50%; 
+            padding: 120px 60px 60px 60px; 
+            z-index: 2; 
+            position: relative; 
+        }
+        .content h1 { 
+            font-family: 'Impact', 'Arial Black', sans-serif; 
+            font-size: 3.2rem; 
+            margin-bottom: 25px; 
+            line-height: 1.1; 
+            color: #F5E6CA; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+        }
+        .content p { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #e3d7c1; margin-bottom: 45px; font-size: 1.4rem; line-height: 1.6; }
+        
+        .btn { 
+            padding: 18px 40px; 
+            background: #F5E6CA; 
+            color: #4A1521; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-family: 'Impact', sans-serif; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #4A1521;
+            color: #F5E6CA;
+            border-color: #D4AF37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* --- SPLIT HERO REAR BACKGROUND IMAGE --- */
+        .hero-bg { 
+            position: absolute; 
+            top: 0; 
+            right: 0; 
+            width: 55%; 
+            height: 100%; 
+            background: url('hotdogsplashcard.jpg') center/cover no-repeat; 
+            z-index: 1;
+        }
+        .hero-bg::before { 
+            content: ''; 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(to right, #4A1521 0%, transparent 100%); 
+        }
+
+        /* --- COMPREHENSIVE MENU CONTAINER PANELS --- */
+        .menu-section { 
+            width: 90%; 
+            max-width: 1200px; 
+            background: #4A1521; 
+            border-radius: 25px; 
+            padding: 60px; 
+            margin-top: 50px; 
+            border: 3px solid #D4AF37;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+        
+        .menu-section h2 { font-family: 'Impact', sans-serif; font-size: 3.5rem; text-transform: uppercase; text-align: center; color: #F5E6CA; margin-bottom: 40px; letter-spacing: 3px; }
+        .menu-subsection-title { font-family: 'Impact', sans-serif; font-size: 2rem; color: #D4AF37; margin: 40px 0 20px 0; border-left: 5px solid #D4AF37; padding-left: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Two Column Grid Setup */
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        
+        /* Flexbox Alignment for Image and Text side-by-side */
+        .menu-item { 
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 2px dashed rgba(212, 175, 55, 0.3); 
+            padding-bottom: 25px; 
+        }
+
+        /* Styled Image Container Box */
+        .item-img-box {
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
+            background: #141414;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Wrap Content Next to Image */
+        .item-details {
+            flex-grow: 1;
+        }
+        
+        .item-header { margin-bottom: 8px; }
+        .item-name { font-family: 'Impact', sans-serif; font-size: 1.5rem; color: #F5E6CA; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Inline Smaller Price Styling */
+        .item-description { font-family: 'Segoe UI', sans-serif; color: #ccc; line-height: 1.5; font-size: 1rem; }
+        .inline-price { font-family: 'Impact', sans-serif; font-size: 1.1rem; color: #D4AF37; margin-left: 6px; white-space: nowrap; }
+        
+        /* --- TOPPING BAR STYLES --- */
+        .toppings-container { grid-column: 1 / -1; background: #141414; padding: 30px; border-radius: 15px; text-align: center; border: 1px solid rgba(212, 175, 55, 0.2); margin-top: 20px; }
+        .toppings-container h3 { font-family: 'Impact', sans-serif; font-size: 1.8rem; color: #F5E6CA; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .toppings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        
+        .topping-tag { 
+            background: #222222; 
+            padding: 12px; 
+            border-radius: 8px; 
+            border-left: 4px solid #D4AF37; 
+            color: #ddd; 
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        /* --- PRIVATE CATERING BANNER PANEL --- */
+        #catering { 
+            padding: 80px 40px; 
+            text-align: center; 
+            color: #F5E6CA; 
+            width: 90%; 
+            max-width: 1200px;
+            background: #4A1521;
+            border-radius: 25px;
+            border: 3px solid #D4AF37;
+            margin-top: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        /* Catering Header with Side Images */
+        .catering-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .catering-header h1 {
+            font-family: 'Impact', sans-serif;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #F5E6CA;
+            margin: 0;
+        }
+
+        .catering-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid #D4AF37;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        #catering p {
+            font-family: 'Segoe UI', sans-serif;
+            color: #e3d7c1;
+            font-size: 1.6rem;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+        }
+        
+        .phone-link { 
+            font-family: 'Impact', sans-serif; 
+            font-size: 1.6rem; 
+            font-weight: bold; 
+            color: #D4AF37; 
+            text-decoration: none; 
+            display: inline-block; 
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .phone-link:hover {
+            color: #F5E6CA;
+        }
+
+        /* --- RESPONSIVE MEDIA BREAKPOINTS --- */
+        @media (max-width: 992px) {
+            .menu-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .header-nav { justify-content: space-between; padding: 0 20px; }
+            .main-brand { font-size: 2rem; }
+            .splash-card { height: auto; flex-direction: column; padding-top: 100px; }
+            .hero-bg { position: relative; width: 100%; height: 300px; order: 1; }
+            .hero-bg::before { background: linear-gradient(to top, #4A1521 0%, transparent 100%); }
+            .content { width: 100%; text-align: center; padding: 40px 20px; order: 2; }
+            .menu-section { padding: 30px 20px; }
+            .menu-item { flex-direction: column; text-align: center; }
+            .item-header { text-align: center; }
+            .catering-header { gap: 15px; }
+            .catering-header h1 { font-size: 2.5rem; }
+            .catering-img { width: 60px; height: 60px; }
+            #catering p { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HERO SPLASH CARD MAIN FRAME -->
+    <div class="splash-card" id="home">
+        <header class="header-nav">
+            <div class="main-brand">Artisan Hot Dogs</div>
+            <div class="menu-wrap">
+                <input type="checkbox" class="toggler">
+                <div class="hamburger"><div></div></div>
+                <div class="menu-dropdown">
+                    <a href="#home">Home</a>
+                    <a href="#menu">Our Menu</a>
+                    <a href="locations.html">Locations</a>
+                    <a href="#catering">Catering</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <h1>Crafted To<br>Perfection</h1>
+            <p>Elevated street food featuring premium ingredients and time-honored grilling techniques.</p>
+            <a href="#menu" class="btn">Explore Menu</a>
+        </div>
+        <div class="hero-bg"></div>
+    </div>
+
+    <!-- 2. COMPREHENSIVE PRODUCTION MENU BOARD -->
+    <div class="menu-section" id="menu">
+        <h2>On The Menu</h2>
+        
+        <div class="menu-subsection-title">Gourmet Hot Dogs</div>
+        <div class="menu-grid">
+            
+            <!-- Coney Dog -->
+            <div class="menu-item">
+                <div class="item-img-box">
+                    <img src="coney.png" alt="Coney Dog">
+                </div>
+                <div class="item-details">
+                    <div class="item-header"><div class="item-name">The Coney Dog</div></div>
+                    <p class="item-description">Smothered in a rich, finely ground savory beef chili sauce, topped with a mustard drizzle and diced white onions.<span class="inline-price">7.00</span></p>
+                </div>
+            </div>
+
+            <!-- New York Style -->
+            <div class="menu-item">
+                <div class="item-img-box">
+                    <img src="newyork.png" alt="New York Style Hot Dog">
+                </div>
+                <div class="item-details">
+                    <div class="item-header"><div class="item-name">New York Style Dog</div></div>
+                    <p class="item-description">Classic big-apple style topped with tangy sauerkraut, sweet onion relish, and a ribbon of spicy brown mustard.<span class="inline-price">7.00</span></p>
+                </div>
+            </div>
+
+            <!-- Chicago Style -->
+            <div class="menu-item">
+                <div class="item-img-box">
+                    <img src="chicago.png" alt="Chicago Style Hot Dog">
+                </div>
+                <div class="item-details">
+                    <div class="item-header"><div class="item-name">Chicago Style Dog</div></div>
+                    <p class="item-description">Dragged through the garden: yellow mustard, neon green relish, chopped onions, tomato wedges, pickle spear, sport peppers, and celery salt on a poppy seed bun.<span class="inline-price">8.00</span></p>
+                </div>
+            </div>
+
+            <!-- Appalachian Slaw Dog -->
+            <div class="menu-item">
+                <div class="item-img-box">
+                    <img src="slawdog.png" alt="Appalachian Slaw Dog">
+                </div>
+                <div class="item-details">
+                    <div class="item-header"><div class="item-name">Appalachian Slaw Dog</div></div>
+                    <p class="item-description">A regional staple! Premium all-beef frank layered with sweet, creamy home-style coleslaw and yellow mustard.<span class="inline-price">5.00</span></p>
+                </div>
+            </div>
+
+            <!-- LA Style Glizzy -->
+            <div class="menu-item">
+                <div class="item-img-box">
+                    <img src="lastyle.png" alt="LA Style Glizzy">
+                </div>
+                <div class="item-details">
+                    <div class="item-header"><div class="item-name">LA Style Glizzy</div></div>
+                    <p class="item-description">Quarter-pound all-beef dog wrapped in smoky bacon, piled high with sizzled flat-top grilled bell peppers and sweet onions.<span class="inline-price">8.00</span></p>
+                </div>
+            </div>
+
+            <!-- Regular Build Your Own -->
+            <div class="menu-item">
+                <div class="item-img-box">
+                    <img src="regular.png" alt="Build Your Own Hot Dog">
+                </div>
+                <div class="item-details">
+                    <div class="item-header"><div class="item-name">Regular / Build-Your-Own</div></div>
+                    <p class="item-description">A perfectly grilled premium all-beef dog on a warm bun. Ready to customize exactly how you like it at the topping bar.<span class="inline-price">5.00</span></p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CONDIMENT & CUSTOM BAR COMPONENT -->
+        <div class="toppings-container">
+            <h3>The Custom Topping Bar</h3>
+            <div class="toppings-grid">
+                <div class="topping-tag">Grilled Peppers (+1.00)</div>
+                <div class="topping-tag">Grilled Onions (+1.00)</div>
+                <div class="topping-tag">Hot Dog Sauce (+1.00)</div>
+                <div class="topping-tag">Coleslaw (+1.00)</div>
+                <div class="topping-tag">Raw Diced Onions (+1.00)</div>
+                <div class="topping-tag">Crushed Hot Cheetos (+1.00)</div>
+                <div class="topping-tag">Shredded Cheese (+1.00)</div>
+                <div class="topping-tag">Nacho Cheese (+1.00)</div>
+                <div class="topping-tag">Sliced Jalapeños (+1.00)</div>
+                <div class="topping-tag">Mustard / Ketchup / Mayo (Free)</div>
+            </div>
+        </div>
+
+        <div class="menu-subsection-title">Sides & Extras</div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-header"><div class="item-name">Homemade Potato Salad</div></div>
+                    <p class="item-description">Rich, creamy Southern-style potato salad.<span class="inline-price">3.50</span></p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-header"><div class="item-name">Fresh Country Coleslaw</div></div>
+                    <p class="item-description">Crisp cabbage and carrots in a tangy dressing.<span class="inline-price">3.00</span></p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-header"><div class="item-name">Grab-and-Go Potato Chips</div></div>
+                    <p class="item-description">Classic individual snack bag.<span class="inline-price">1.50</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. PRIVATE CATERING BANNER PANEL -->
+    <section id="catering">
+        <div class="catering-header">
+            <img src="catering1.jpeg" alt="Catering Special 1" class="catering-img">
+            <h1>Catering</h1>
+            <img src="catering2.jpeg" alt="Catering Special 2" class="catering-img">
+        </div>
+        <p>
+            Planning an event? Let Artisan Hot Dogs bring the flavor! From backyard parties to corporate events, we serve up our signature L.A.-style bacon-wrapped dogs and Appalachian slaw dogs fresh off the flat-top. <br>We can also serve your favorite dishes.
+        </p>
+        <a href="tel:7403075627" class="phone-link">Book us today: (740) 307-5627</a>
+    </section>
+
+    <!-- AUTOMATIC HAMBURGER DISMISSAL SCRIPT -->
+    <script>
+        document.querySelectorAll('.menu-dropdown a').forEach(link => {
+            link.addEventListener('click', () => { document.querySelector('.toggler').checked = false; });
+        });
+    </script>
+</body>
+</html>

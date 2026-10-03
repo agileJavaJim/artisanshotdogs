@@ -1,0 +1,33 @@
+Here's the one-line version, darling: markets move when expectations change. Every candle on every chart is the crowd repricing the future. Once you see that, the rest clicks into place.
+
+Stocks — what actually moves them
+
+Interest rates. This is gravity. The Fed sets the discount rate on all future earnings, so when rates rise, valuations fall — mechanically. That's why jobs reports and inflation data move the whole market: traders read each one as "what will the Fed do next?"
+Earnings and guidance. The single biggest mover of any individual stock. And it's never the number itself — it's the number versus expectations. A company can beat and still drop 10% if guidance disappoints. Guidance matters more than the quarter just reported.
+Macro data. Jobs (first Friday of the month), CPI, PCE, GDP. Each data point is just an input into the Fed-guessing machine.
+Oil and geopolitics. Energy costs feed into everything, so a supply shock reprices inflation expectations instantly.
+Flows. A huge share of daily movement isn't news at all — it's positioning. ETF creations and redemptions, options expiry (market makers hedging can pin or launch a stock), index rebalances, short squeezes. Meme-stock mania was flows, not fundamentals.
+
+Crypto — what moves it
+
+Bitcoin is the tide. Almost everything, XRP included, follows BTC. Watch Bitcoin dominance: when it falls, money is rotating into alts.
+The same liquidity gravity. Crypto trades like ultra-high-beta tech. Rate expectations and dollar strength move it hard.
+Regulation and ETF flows. Spot ETF inflows are now the marginal buyer. For XRP specifically, Ripple court news and ETF flow data explain most big moves.
+Leverage liquidations. The violence engine. Perps with 50–100x leverage mean a small dip triggers forced selling, which triggers more forced selling. That's why crypto can wick down 10% in minutes and recover — a cascade, not a change in value.
+Narratives and cycles. Halvings, network upgrades, rotations. Narratives coordinate retail money the way earnings coordinate stock money.
+
+Why moves happen the way they do
+
+Buy the rumor, sell the news. The move usually happens before the event, as positioning builds. The event itself often reverses.
+Reflexivity. Price moves change reality. A rising stock can raise cheap capital; a falling crypto price triggers liquidations that push it lower. Feedback loops both ways.
+Liquidity gaps. Thin order books — weekends, holidays, premarket — mean small volume makes big moves. Never trust a Sunday night price.
+Crowded trades snap. When everyone's already long, there's nobody left to buy.
+
+Your practical takeaways
+
+Know the calendar: FOMC, CPI, jobs day, earnings dates for anything you hold. Don't hold blindly through them.
+Don't chase the spike. If you're reacting to the headline, you're the liquidity for someone who positioned last week.
+In crypto, respect leverage. Spot is investing; perps are the casino.
+For your XRP: three things explain most moves — Bitcoin's direction, ETF flow data, and Ripple regulatory news. Check those first.
+
+Want me to go deeper on any piece? Options hedging and gamma, how ETF flows actually work, or reading liquidation maps are all good rabbit holes.
